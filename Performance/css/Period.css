@@ -1,0 +1,15 @@
+/*
+ * Styles that apply to all pages displayed from the Period Controller.
+ */
+
+/*
+ * Period List
+ */
+
+#view[data-controller='Period'][data-view='List'] {
+    padding: 20px;
+}
+
+#view[data-controller='Period'][data-view='List'] .sr-tile {
+    margin-right: 20px;
+}

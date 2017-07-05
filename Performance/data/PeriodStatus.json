@@ -1,0 +1,32 @@
+[
+	{
+		"_id": "762e78c5-f7e7-4319-a1c0-d762512db44d",
+		"type": "PeriodStatus",
+        "order": 1,
+		"title": "New"
+	},
+	{
+		"_id": "26d74f02-7632-4682-9704-f920c736d67f",
+		"type": "PeriodStatus",
+        "order": 2,
+		"title": "Goals - In Progress"
+	},
+	{
+		"_id": "2083e75a-4fc7-40bc-b907-2a098fa740ea",
+		"type": "PeriodStatus",
+        "order": 3,
+		"title": "Goals - Complete"
+	},
+	{
+		"_id": "1694fbec-fcfc-4c4e-bfa0-2575725a361e",
+		"type": "PeriodStatus",
+        "order": 4,
+		"title": "Mgr Eval - In Progress"
+	},
+	{
+		"_id": "bc6b8b02-b383-4f68-aec6-63bb2c4431d6",
+		"type": "PeriodStatus",
+        "order": 5,
+		"title": "Completed"
+	}
+]

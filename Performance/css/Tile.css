@@ -1,0 +1,8 @@
+/*
+ * Styles that apply to the tile widget.
+ */
+
+/* The cursor is a pointer on hover. */
+.sr-tile:hover {
+    cursor: pointer
+}

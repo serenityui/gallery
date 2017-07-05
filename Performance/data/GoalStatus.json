@@ -1,0 +1,20 @@
+[
+	{
+		"_id": "bc2cfc6b-a221-4284-9b51-306c8fe1b396",
+		"type": "PeriodStatus",
+        "order": 1,
+		"title": "Not Started"
+	},
+	{
+		"_id": "9e1f6688-c430-4a6d-87ab-a34e4aa49a25",
+		"type": "PeriodStatus",
+        "order": 2,
+		"title": "In Progress"
+	},
+	{
+		"_id": "b70d5bf2-55e7-46e2-a241-c0de44a78cb1",
+		"type": "PeriodStatus",
+        "order": 3,
+		"title": "Complete"
+	}
+]

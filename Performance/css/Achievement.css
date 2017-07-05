@@ -1,0 +1,8 @@
+/*
+ * Styles that apply to all pages displayed from the Achievement Controller.
+ */
+
+#page[data-controller='Achievement'][data-view='Edit'] #achievementDescription {
+    width: 100%;
+    height: auto;
+}

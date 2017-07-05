@@ -1,0 +1,115 @@
+/*
+ * Styles that apply to all pages displayed from the Goal Controller.
+ */
+
+
+
+/*
+ * Goal Layout Page.
+ */
+#view[data-controller='Goal'][data-view='Layout'] .app-show-achievements {
+    float: right;
+}
+
+#view[data-controller='Goal'][data-view='Layout'] .app-show-achievements.app-selected {
+    color: black;
+}
+
+
+/*
+ * Goal Edit Page.
+ */
+
+#page[data-controller='Goal'][data-view='Edit'] div.fluid-container {
+    position:absolute;
+    top: 0px;
+    left: 20px;
+    bottom: 0px;
+    right: 20px;
+}
+
+#page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.fluid-container {
+    right: 550px !important;
+    padding-right: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#page[data-controller='Goal'][data-view='Edit'] #goalTitle {
+    width: 100%;
+}
+
+#page[data-controller='Goal'][data-view='Edit'] textarea {
+    width: 100%;
+    height: auto;
+}
+
+#page[data-controller='Goal'][data-view='Edit'] #achievements {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 550px;
+    display:none;
+    background-color: #f5f5f5;
+}
+
+#page[data-controller='Goal'][data-view='Edit'].app-show-achievements #achievements {
+    display:block !important;
+}
+
+
+
+/*
+ * Goal Edit Page - Achievements Panel
+ */
+
+/* Style the "Achievements" header */
+#page[data-controller='Goal'][data-view='Edit'] #achievementsHeader {
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Format the achievements that are displayed */
+#page[data-controller='Goal'][data-view='Edit'] .app-achievement {
+    padding:12px;
+    font-size:16px;
+    position: relative;
+    background-color: transparent;
+}
+
+/* Highlight the selected achievement */
+#page[data-controller='Goal'][data-view='Edit'] .app-achievement.app-selected {
+    background-color: gray;
+    color: white;
+}
+
+/* When hovering over an achievement, change the background color */
+#page[data-controller='Goal'][data-view='Edit'] .app-achievement:not(.app-selected):hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+/* The achievements list is positioned below the header and above the footer */
+#page[data-controller='Goal'][data-view='Edit'] #achievementsList {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    overflow-y: auto;
+}
+
+/* The footer is positioned at the bottom of the achievements panel */
+#page[data-controller='Goal'][data-view='Edit'] #achievementsFooter {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 40px;
+    border-width: 1px 0px 0px 0px;
+    padding: 5px 12px;
+}
+
+/* The copy to clipboard icon is positioned on the right side of the achievements footer */
+#page[data-controller='Goal'][data-view='Edit'] #achievementsFooter .app-copy {
+    float: right;
+}
