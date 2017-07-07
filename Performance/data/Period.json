@@ -1,0 +1,128 @@
+[
+	{
+		"_id": "7dc2468e-d1ea-43d8-b316-87d3bf4a1faa",
+		"type": "Period",
+		"employee_id": "4bfce846-8550-43b2-b387-27691d2199ff",
+		"startDate": "2017-01-01T00:00",
+		"endDate": "2017-12-31T00:00",
+		"status": "In Progress",
+		"goals": [
+			{
+				"id": "8791578b-d679-4844-a45a-60b88e34960b",
+				"title": "Release Serenity UI 2017.1",
+				"measurement": "Developed more widgets for Serenity UI and an application template for the template gallery.",
+				"dueDate": "2017-02-01T00:00",
+				"status": "Completed",
+				"achievements": [
+					{
+						"id": "970b1c7a-4039-47f2-9f12-9306bf0ba357",
+						"createdDate": "2016-11-30T00:00",
+						"startDate": "2016-11-01T00:00",
+						"endDate": "2016-11-30T00:00",
+						"description": "Developed the Kanban widget."
+					},
+					{
+						"id": "464fbf1d-aacd-47d4-a5ce-9113d064390b",
+						"createdDate": "2016-12-31T00:00",
+						"startDate": "2016-12-01T00:00",
+						"endDate": "2016-12-31T00:00",
+						"description": "Developed the Colorpalette and Notification widgets."
+					},
+					{
+						"id": "464fbf1d-aacd-47d4-a5ce-9113d064390b",
+						"createdDate": "2017-01-31T00:00",
+						"startDate": "2016-12-01T00:00",
+						"endDate": "2017-01-31T00:00",
+						"description": "Developed a beta version of the Tree widget."
+					},
+					{
+						"id": "ff539aad-d51b-43c9-8b95-941eaeb53ecc",
+						"createdDate": "2017-01-31T00:00",
+						"startDate": "2016-11-01T00:00",
+						"endDate": "2017-01-31T00:00",
+						"description": "Incorporated new features and fixed bugs for a beta version of the Scheduler widget."
+					},
+					{
+						"id": "ea4786e1-d343-4b5f-ac6e-d006be28dd5c",
+						"createdDate": "2017-01-31T00:00",
+						"startDate": "2016-11-01T00:00",
+						"endDate": "2017-01-31T00:00",
+						"description": "Created an application template that demonstrates how to use Serenity UI widgets to create a Calendar application similar in look and feel to Google Calendar."
+					}
+				]
+			},
+			{
+				"id": "e45549c7-2c6b-4b2b-9a00-ec97c2d398f4",
+				"title": "Release Serenity UI 2017.2",
+				"measurement": "",
+				"dueDate": "2017-09-01T00:00",
+				"status": "Not Started",
+				"achievements": []
+			}
+		]
+	},
+	{
+		"_id": "835ec0ed-2401-45e5-95ee-443dbe7224ef",
+		"type": "Period",
+		"employee_id": "4bfce846-8550-43b2-b387-27691d2199ff",
+		"startDate": "2016-01-01T00:00",
+		"endDate": "2016-12-31T00:00",
+		"status": "Completed",
+		"goals": [
+			{
+				"id": "29f17dd5-7131-4c5d-abb8-dcf177445797",
+				"title": "Release Serenity UI 2016.1",
+				"measurement": "Developed widgets and framework classes for an initial release of Serenity UI.",
+				"dueDate": "2016-10-01T00:00",
+				"status": "Completed",
+				"employeeComments": "Successfully developed 9 widgets and 6 classes for the initial release of Serenity UI.",
+				"supervisorComments": "The release of Serenity UI 2016.1 was a success.",
+				"rating": "5 - Exceptional Performance",
+				"achievements": [
+					{
+						"id": "37b6fbc4-9744-43bf-8e9c-01f1b53ef687",
+						"createdDate": "2016-05-31T00:00",
+						"startDate": "2016-05-01T00:00",
+						"endDate": "2016-05-31T00:00",
+						"description": "Developed the Class, Observable and DataSource classes. Developed the Table widget."
+					},
+					{
+						"id": "aef77a02-a913-4b78-a6a9-68441dea4efb",
+						"createdDate": "2016-06-30T00:00",
+						"startDate": "2016-06-01T00:00",
+						"endDate": "2016-06-30T00:00",
+						"description": "Developed the serenity.format function. Developed the Model class. Developed the Autocomplete, Combobox and Dropdownlist widgets."
+					},
+					{
+						"id": "aef77a02-ce434aba-8142-4b90-8c99-14eed8f2def5",
+						"createdDate": "2016-07-31T00:00",
+						"startDate": "2016-07-01T00:00",
+						"endDate": "2016-07-31T00:00",
+						"description": "Developed the Contextmenu, Panel and Timepicker widgets."
+					},
+					{
+						"id": "c0d0f573-8396-40cf-9bd1-24e4c639523f",
+						"createdDate": "2016-08-31T00:00",
+						"startDate": "2016-08-01T00:00",
+						"endDate": "2016-08-31T00:00",
+						"description": "Developed the Overlay and Router classes."
+					},
+					{
+						"id": "e0070ec7-fd1e-4547-85bf-05526038905e",
+						"createdDate": "2016-08-31T00:00",
+						"startDate": "2016-07-01T00:00",
+						"endDate": "2016-08-31T00:00",
+						"description": "Developed the Intervalselection widget."
+					},
+					{
+						"id": "1edc0e71-2088-4179-8753-b8ba70538436",
+						"createdDate": "2016-10-31T00:00",
+						"startDate": "2016-07-01T00:00",
+						"endDate": "2016-10-31T00:00",
+						"description": "Developed a prototype of the Scheduler widget."
+					}
+				]
+			}
+		]
+	}
+]
