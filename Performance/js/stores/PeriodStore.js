@@ -96,12 +96,36 @@
                 });
             });
         }
+        
+        function saveGoal(goal) {
+            
+            return $.Deferred(function (deferred) {
+                if (goal.id === "0") {
+                    goal.id = serenity.guid();
+                }
+                goal.commit();
+                deferred.resolve({ result: "success" });
+            });
+        }
 
+        function saveAchievement(achievement) {
+            
+            return $.Deferred(function (deferred) {
+                if (achievement.id === "0") {
+                    achievement.id = serenity.guid();
+                }
+                achievement.commit();
+                deferred.resolve({ result: "success" });
+            });
+        }
+        
         return {
             list: list,
             get: get,
             goal: goal,
-            achievement: achievement
+            achievement: achievement,
+            saveGoal: saveGoal,
+            saveAchievement: saveAchievement
         };
     }(Performance.Stores.Base);
 }(window.Performance, window.jQuery, window.serenity));

@@ -6,3 +6,9 @@
     width: 100%;
     height: auto;
 }
+
+
+/* The save icon is positioned in the center of the edit page footer */
+#page[data-controller='Achievement'][data-view='Edit'] div.app-footer {
+    text-align: center;
+}

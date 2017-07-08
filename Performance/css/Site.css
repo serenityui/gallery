@@ -15,6 +15,17 @@ textarea {
     padding: .3em .2em;
 }
 
+/* Footer toolbar - toolbar that is displayed at the bottom of a page. */
+.app-footer {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 40px;
+    border-width: 1px 0px 0px 0px;
+    padding: 5px 12px;
+}
+
 
 
 /*

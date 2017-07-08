@@ -50,20 +50,34 @@
             
             // Get the achievement.
             Performance.Stores.Period.achievement(args.id).then(function (achievement) {
-                // Load the layout view.
-                that._layout({ achievement: achievement }).then(function (layoutView) {
-                    // Get the element where the HTML for the edit view will be displayed.
-                    var $el = $("#page");
-                    // Load the HTML for the edit page into the "#page" element of the layout view.
-                    that._load("Edit", $el).then(function () {
-                        // Instantiate the edit view.
-                        var view = new Performance.Views.Achievement.Edit({}, $el);
-                        // Render the edit view.
-                        view.render();
-                        // Load the data into the edit view.
-                        view.load({ achievement: achievement });
+                if (typeof achievement !== "undefined") {
+                    // Load the layout view.
+                    that._layout({ achievement: achievement }).then(function (layoutView) {
+                        // Get the element where the HTML for the edit view will be displayed.
+                        var $el = $("#page");
+                        // Load the HTML for the edit page into the "#page" element of the layout view.
+                        that._load("Edit", $el).then(function () {
+                            // Instantiate the edit view.
+                            var view = new Performance.Views.Achievement.Edit({
+                                save: function (args) {
+                                    // Save the achievement.
+                                    Performance.Stores.Period.saveAchievement(args.achievement).then(function (response) {
+                                        view.saveComplete(response);
+                                        // Reload the page.
+                                        Performance.App.navigate(serenity.format("/Achievement/{0}", args.achievement.id));
+                                    });
+                                }
+                            }, $el);
+                            // Render the edit view.
+                            view.render();
+                            // Load the data into the edit view.
+                            view.load({ achievement: achievement });
+                        });
                     });
-                });
+                } else {
+                    // The achievement was not found.  Return to the home page.
+                    Performance.App.navigate("/");
+                }
             });
         }
     });

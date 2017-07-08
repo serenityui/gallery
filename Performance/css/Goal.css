@@ -16,23 +16,25 @@
 }
 
 
+
 /*
  * Goal Edit Page.
  */
 
-#page[data-controller='Goal'][data-view='Edit'] div.fluid-container {
+#page[data-controller='Goal'][data-view='Edit'] div.app-page-contents {
     position:absolute;
     top: 0px;
-    left: 20px;
+    left: 0px;
+    right: 0px;
     bottom: 0px;
-    right: 20px;
-}
-
-#page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.fluid-container {
-    right: 550px !important;
-    padding-right: 10px;
+    padding: 0px 20px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+#page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.app-page-contents {
+    right: 550px !important;
+    padding-right: 10px;
 }
 
 #page[data-controller='Goal'][data-view='Edit'] #goalTitle {
@@ -44,6 +46,24 @@
     height: auto;
 }
 
+/* The save icon is positioned in the center of the edit page footer */
+#page[data-controller='Goal'][data-view='Edit'] div.app-edit-footer {
+    text-align: center;
+}
+
+
+#page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.app-edit-footer {
+    right: 550px !important;
+}
+
+
+
+
+/*
+ * Goal Edit Page - Achievements Panel
+ */
+
+/* Position the achievements panel on the right side of the edit page */
 #page[data-controller='Goal'][data-view='Edit'] #achievements {
     position: absolute;
     top: 0px;
@@ -54,15 +74,10 @@
     background-color: #f5f5f5;
 }
 
+/* Display the achievements panel when the page has the app-show-achievements CSS class */
 #page[data-controller='Goal'][data-view='Edit'].app-show-achievements #achievements {
     display:block !important;
 }
-
-
-
-/*
- * Goal Edit Page - Achievements Panel
- */
 
 /* Style the "Achievements" header */
 #page[data-controller='Goal'][data-view='Edit'] #achievementsHeader {
@@ -98,18 +113,27 @@
     overflow-y: auto;
 }
 
-/* The footer is positioned at the bottom of the achievements panel */
+/* The copy to clipboard icon is positioned in the center of the achievements footer */
 #page[data-controller='Goal'][data-view='Edit'] #achievementsFooter {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 40px;
-    border-width: 1px 0px 0px 0px;
-    padding: 5px 12px;
+    text-align: center;
 }
 
-/* The copy to clipboard icon is positioned on the right side of the achievements footer */
-#page[data-controller='Goal'][data-view='Edit'] #achievementsFooter .app-copy {
-    float: right;
+
+
+/*
+ * Goal Achievements Page.
+ */
+
+#page[data-controller='Goal'][data-view='Achievements'] div.app-page-contents {
+    position: absolute;
+    top: 0px;
+    bottom: 40px;
+    left: 0px;
+    right: 0px;
+    overflow-y: auto;
+}
+
+/* The add icon is positioned in the center of the achievements page footer */
+#page[data-controller='Goal'][data-view='Achievements'] div.app-footer {
+    text-align: center;
 }

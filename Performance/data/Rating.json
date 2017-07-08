@@ -1,0 +1,26 @@
+[
+	{
+		"_id": "5f3f72a0-0c77-4f8b-9a09-e1dcc885149e",
+		"type": "Rating",
+        "order": 1,
+		"title": "5 - Exceptional Performance"
+	},
+	{
+		"_id": "259be595-24c7-4b74-a0a6-a713c38659b9",
+		"type": "Rating",
+        "order": 2,
+		"title": "4 - Successful Performance"
+	},
+	{
+		"_id": "c6ef5aec-5949-4b05-958a-90da962bc48f",
+		"type": "Rating",
+        "order": 3,
+		"title": "3 - Satisfactory Performance"
+	},
+	{
+		"_id": "41f88d33-bc19-40fa-b395-c25b786ffc88",
+		"type": "Rating",
+        "order": 4,
+		"title": "2 - Unsatisfactory Performance"
+	}
+]

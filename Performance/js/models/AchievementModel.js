@@ -14,6 +14,10 @@
 
             serenity.Model.call(this, values, options);
             
+            if (typeof this.createdDate === "string") {
+                this.createdDate = new Date(this.createdDate);
+            }
+            
             if (typeof this.startDate === "string") {
                 this.startDate = new Date(this.startDate);
             }
@@ -59,8 +63,29 @@
         
         status: {
             get: function () {
-                return this.endDate === null ? "In Progress" : "Complete";
+                return this.id === "0"
+                    ? "New"
+                    : (this.endDate === null ? "In Progress" : "Complete");
             }
+        },
+        
+        validate: function () {
+            
+            var errors = [];
+            
+            if (this.description.length === 0) {
+                errors.push("Description is required.");
+            }
+            
+            if (this.startDate === null && this.endDate !== null) {
+                errors.push("A Start Date is needed if there is an End Date.");
+            }
+            
+            if (this.startDate !== null && this.endDate !== null && this.startDate > this.endDate) {
+                errors.push("Start Date must be the same or before the End Date.");
+            }
+            
+            return errors;
         }
     });
 }(window.Performance, window.jQuery, window.serenity));

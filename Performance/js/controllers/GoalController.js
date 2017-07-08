@@ -67,8 +67,8 @@
 
             var that = this;
             
-            // Get the goal.
-            Performance.Stores.Period.goal(args.id).then(function (goal) {
+            // Get the goal and rating lookup values.
+            $.when(Performance.Stores.Period.goal(args.id), Performance.Stores.Lookup.rating()).done(function (goal, ratings) {
                 // Load the layout view.
                 that._layout({ goal: goal }).then(function (layoutView) {
                     // Select the "edit" icon in the layout view.
@@ -78,11 +78,20 @@
                     // Load the HTML for the edit page into the "#page" element of the layout view.
                     that._load("Edit", $el).then(function () {
                         // Instantiate the edit view.
-                        that.__currentView = new Performance.Views.Goal.Edit({}, $el);
+                        that.__currentView = new Performance.Views.Goal.Edit({
+                            save: function (args) {
+                                // Save the goal.
+                                Performance.Stores.Period.saveGoal(args.goal).then(function (response) {
+                                    that.__currentView.saveComplete(response);
+                                    // Reload the page.
+                                    Performance.App.navigate(serenity.format("/Goal/{0}", args.goal.id));
+                                });
+                            }
+                        }, $el);
                         // Render the edit view.
                         that.__currentView.render();
                         // Load the data into the edit view.
-                        that.__currentView.load({ goal: goal });
+                        that.__currentView.load({ goal: goal, ratings: ratings });
                     });
                 });
             });
@@ -109,6 +118,11 @@
                         that.__currentView = new Performance.Views.Goal.Achievements({
                             edit: function (args) {
                                 Performance.App.navigate(serenity.format("/Achievement/{0}", args.id));
+                            },
+                            add: function (args) {
+                                
+                                goal.addAchievement();
+                                Performance.App.navigate("/Achievement/0");
                             }
                         }, $el);
                         // Render the edit view.
