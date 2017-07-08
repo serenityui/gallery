@@ -1,0 +1,5 @@
+[
+	{ "id": 1, "title": "John Doe", "color": "#4986E7", "calendarTypeId": 1, "show": true },
+	{ "id": 2, "title": "Serenity UI", "color": "#D06B64", "calendarTypeId": 2, "show": true },
+	{ "id": 3, "title": "Holidays in United States", "color": "#B99AE1", "calendarTypeId": 2, "show": true }
+]

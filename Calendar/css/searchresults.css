@@ -1,0 +1,17 @@
+.sgc-search-heading {
+    padding: 1.22em 0px;
+    border-width: 0px 0px 1px 0px;
+}
+
+.sgc-back {
+    width: 70px;
+}
+
+.sgc-search-result-date div {
+    color: blue;
+}
+
+.sgc-search-result-date:hover div {
+    cursor: pointer;
+    text-decoration: underline;
+}

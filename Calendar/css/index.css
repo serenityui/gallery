@@ -1,0 +1,76 @@
+.page-heading {
+    width: 100%;
+    text-align: center;
+    color: #23527C;
+    margin: 20px 0px;
+}
+
+.page-heading-divider {
+    margin-top: 18px;
+}
+
+.navigation-panel {
+    float: left;
+    width: 170px;
+}
+
+.workspace-panel {
+    margin-left: 170px;
+}
+
+#miniCalendar .sr-panel-body {
+    padding-top: 0px !important;
+}
+
+#miniCalendar .ui-datepicker {
+    font-size: 11px;
+    border-width: 0px;
+    width: 14em !important;
+}
+
+    #miniCalendar .ui-datepicker .ui-datepicker-title {
+        text-align: left !important;
+        margin-left: 0px !important;
+    }
+
+    #miniCalendar .ui-datepicker .ui-datepicker-prev {
+        left: inherit !important;
+        right: 20px;
+    }
+
+    #miniCalendar .ui-datepicker .ui-datepicker-header {
+        background-color: inherit !important;
+        border-width: 0px !important;
+    }
+
+#calendars .sr-panel > div,
+#miniCalendarPanel > div {
+    border-width: 0px !important;
+}
+
+#calendars .sr-panel-heading,
+#miniCalendarPanel .sr-panel-heading {
+    background-color: inherit !important;
+}
+
+#calendars .sr-panel-body {
+    padding-left: 16px;
+}
+
+
+.sgc-calendar-contextmenuicon {
+    float: right;
+    display: none;
+}
+
+.sgc-calendar:hover .sgc-calendar-contextmenuicon {
+    display: inline !important;
+}
+
+.sgc-calendar:hover .sgc-calendar-contextmenuicon:hover {
+    cursor: pointer;
+}
+
+.sgc-calendar-show:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Serenity UI - Google Calendar</title>
+
+        <!-- Bootstrap (CSS) -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!-- Font Awesome (CSS) -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Serenity UI (CSS) -->
+        <link rel="stylesheet" href="http://serenityui.com/libs/serenityui/css/themes/base/serenityui.min.css">
+
+        <!-- App (CSS) -->
+        <link rel="stylesheet" href="css/site.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/searchresults.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://serenityui.com">Serenity UI</a>
+            </div>
+
+            <!-- Begin Search -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li style="margin-top:8px;margin-left:50px;">
+                        <div class="input-group" id="adv-search">
+                            <input id="searchCriteria" type="text" class="form-control" placeholder="Search Calendar" />
+                            <div class="input-group-btn">
+                                <div class="btn-group" role="group">
+                                    <div class="dropdown dropdown-lg" style="display:none;">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <form id="searchForm" class="form-horizontal" role="form" style="font-size:13px;">
+                                                <div class="form-group">
+                                                    <label for="filter">Search</label>
+                                                    <select id="searchCalendar" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="contain">What</label>
+                                                    <input id="searchWhat" class="form-control" type="text" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="contain">Where</label>
+                                                    <input id="searchWhere" class="form-control" type="text" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="contain">Doesn't have</label>
+                                                    <input id="searchDoesntHave" class="form-control" type="text" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="contain">Date</label>
+                                                    <div>
+                                                        <input id="searchFromDate" class="form-control" type="text" style="width:30%;" />
+                                                        <label for="contain" style="float:left;padding:6px 12px;">to</label>
+                                                        <input id="searchToDate" class="form-control" type="text" style="width:30%;" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                                <button class="btn btn-primary" style="border-radius:4px;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>
+                                    <button id="basicSearchButton" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Search -->
+        </nav>
+        
+        <div id="view" role="main" style="margin-top:51px;">
+            <div class="navigation-panel">
+                <h4 class="page-heading">Calendar</h4>
+
+                <hr class="page-heading-divider" />
+
+                <div id="miniCalendarPanel">
+                    <div>Mini calendar</div>
+                    <div>
+                        <div id="miniCalendar"></div>
+                    </div>
+                </div>
+
+                <div id="calendars">
+                </div>
+                
+                <div id="calendarContextMenu" class="ui-widget-content" style="display:none;position:absolute;z-index:100;padding:5px;">
+                    <input id="calendarColorPalette" />
+                </div>
+            </div>
+
+            <div class="workspace-panel">
+                <div id="scheduler"></div>
+                
+                <div id="searchResults" style="width:100%;display:none;">
+                    <div class="sgc-search-heading ui-widget-content">
+                        <button class="ui-button sgc-back"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                        <span id="searchResultsMessage"></span>&nbsp;<span id="searchResultsCriteria" style="font-weight:bold;"></span>
+                    </div>
+                    <div id="searchResultsList">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/serenity-template" id="calendarPanelTemplate">
+            <div data-id="{{id}}">
+                <div>{{title}}</div>
+                <div></div>
+            </div>
+        </script>
+        
+        <script type="text/serenity-template" id="calendarTemplate">
+            <div class="sgc-calendar" data-id="{{id}}" style="margin-bottom: 2px;">
+                <i class="sgc-calendar-show fa {{#if show}} fa-check-square-o {{else}} fa-square-o {{/if}}"></i>
+                <span style="display:inline-block;height:11px;width:11px;background-color:{{color}};"></span>
+                <span>{{title}}</span>
+                <i class="sgc-calendar-contextmenuicon fa fa-caret-square-o-down" aria-hidden="true"></i>
+            </div>
+        </script>
+        
+        <!-- jQuery -->
+        <script src="http://serenityui.com/libs/serenityui/js/jquery.min.js"></script>
+
+        <!-- Serenity UI (JS) -->
+        <script src="http://serenityui.com/libs/serenityui/js/serenityui-libs.min.js"></script>
+        <script src="http://serenityui.com/libs/serenityui/js/serenityui.min.js"></script>
+        
+        <!-- App (JS) -->
+        <script src="js/App.js"></script>
+        <script src="js/views/Search.js"></script>
+        <script src="js/views/SearchResults.js"></script>
+        <script src="js/views/Calendar.js"></script>
+        <script src="js/models/Calendar.js"></script>
+        <script src="js/models/CalendarType.js"></script>
+        <script src="js/models/Event.js"></script>
+        <script src="js/stores/CalendarStore.js"></script>
+        <script src="js/stores/EventStore.js"></script>
+    </body>
+</html>
