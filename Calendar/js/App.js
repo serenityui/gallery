@@ -1,7 +1,7 @@
 "use strict";
 
 var Calendar = {
-    root: "/Templates/GoogleCalendar/",
+    root: "/Templates/Calendar/",
     Models: {},
     Views: {},
     Stores: {}
