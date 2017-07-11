@@ -26,6 +26,7 @@
         },
         
         _onCopyToClipboard: function (event) {
+            /// <summary>Copy the selected achievement to the clipboard.</summary>
             
             var $el = this._widgets.achievementsList.find(".app-achievement.app-selected .app-achievement-description");
             
@@ -37,12 +38,15 @@
         },
 
         _onSaveClick: function () {
+            /// <summary>Event handler that is triggered when the save image is clicked.</summary>
             
             this._save();
         },
         
         _save: function () {
+            /// <summary>Save the values entered by the user to the model and validate.</summary>
             
+            // Get the values entered by the user.
             this.__data.goal.set("title", this._widgets.title.val());
             this.__data.goal.set("measurement", this._widgets.measurement.val());
             this.__data.goal.set("dueDate", this._widgets.dueDate.datepicker("getDate"));
@@ -53,16 +57,21 @@
             // Validate the values entered.
             var errors = this.__data.goal.validate();
             
+            // If there are errors.
             if (errors.length > 0) {
+                // Rollback the changes to the model.
                 this.__data.goal.rollback();
                 var message = "";
                 var that = this;
+                // Concatenate the errors together.
                 Enumerable.From(errors)
                     .ForEach(function (error) {
                         message += that.__templates.error({ error: error })
                     });
+                // Display the errors.
                 this.showNotification({ message: message, cssClass: "ui-state-error", duration: 10000 });
             } else {
+                // Data is valid, trigger the save event.
                 this.trigger("save", {goal: this.__data.goal });
             }
         },
@@ -70,6 +79,7 @@
         render: function () {
             /// <summary>Render the view.</summary>
 
+            // Get references to the input elements on the page.  Initialize Datepicker and Dropdownlist widgets.
             this._widgets.title = this.element.find("#goalTitle");
             this._widgets.measurement = this.element.find("#measurement");
             this._widgets.dueDate = this.element.find("#dueDate");
@@ -84,6 +94,7 @@
             this._widgets.achievementsList = this.element.find("#achievementsList");
             this._widgets.achievementsFooter = this.element.find("#achievementsFooter");
             
+            // Subscribe to the click event for the save image.
             this.element.find(".app-save").on("click", $.proxy(this._onSaveClick, this));
         },
 
@@ -92,6 +103,7 @@
 
             this.__data = data;
 
+            // Load the data into the input elements and widgets.
             this._widgets.title.val(data.goal.title);
             this._widgets.measurement.val(data.goal.measurement);
             this._widgets.dueDate.datepicker("setDate", data.goal.shortDueDate);
@@ -105,6 +117,7 @@
             /// <summary>Show or hide the achievements panel.</summary>
 
             if (this.element.hasClass("app-show-achievements")) {
+                // Remove the css class that shows the list of achievements.
                 this.element.removeClass("app-show-achievements");
             } else {
                 // If the achievements haven't been loaded yet...
@@ -117,20 +130,20 @@
                             .ForEach(function (achievement) {
                                 that._widgets.achievementsList.append(that.__templates.tile(achievement));
                             });
-                        
-                        this._widgets.achievementsList.find(".app-achievement").on("click", $.proxy(this._onAchievementClick, this));
+                        // Subscribe to the click event for the copy image.
                         this._widgets.achievementsFooter.find(".app-copy").on("click", $.proxy(this._onCopyToClipboard, this));
                     } else {
                         // Display message that there are no achievements.
                         this._widgets.achievementsList.append("<h3>No Achievements</h3>");
                     }
                 }
-
+                // Add the css class that shows the list of achievements.
                 this.element.addClass("app-show-achievements");
             }
         },
         
         saveComplete: function (response) {
+            /// <summary>Display a notification to the user that the save is complete.</summary>
             
             if (response.result === "success") {
                 this.showNotification({ message: "Goal successfully saved" });

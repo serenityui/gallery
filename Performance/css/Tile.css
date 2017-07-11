@@ -4,5 +4,9 @@
 
 /* The cursor is a pointer on hover. */
 .sr-tile:hover {
-    cursor: pointer
+    cursor: pointer;
+}
+
+.sr-tile:hover div {
+    color: blue;
 }

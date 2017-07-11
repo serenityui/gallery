@@ -6,10 +6,29 @@
  * Period List
  */
 
+/* Define some padding around the list */
 #view[data-controller='Period'][data-view='List'] {
     padding: 20px;
 }
 
+/* Define some space between the tiles */
 #view[data-controller='Period'][data-view='List'] .sr-tile {
     margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+/* The add icon is positioned in the center of the list page footer */
+#view[data-controller='Period'][data-view='List'] div.app-footer {
+    text-align: center;
+}
+
+
+
+/*
+ * Period Edit
+ */
+
+/* The save icon is positioned in the center of the edit page footer */
+#page[data-controller='Period'][data-view='Edit'] div.app-edit-footer {
+    text-align: center;
 }

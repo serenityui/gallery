@@ -51,7 +51,7 @@
     text-align: center;
 }
 
-
+/* Move the footer to make room for the achievements panel when the achievements panel is displayed */
 #page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.app-edit-footer {
     right: 550px !important;
 }

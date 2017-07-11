@@ -11,6 +11,14 @@
 
         constructor: function (values, options) {
 
+            values.startDate = typeof values.startDate === "string"
+                ? new Date(values.startDate)
+                : values.startDate;
+
+            values.endDate = typeof values.endDate === "string"
+                ? new Date(values.endDate)
+                : values.endDate;
+            
             Performance.Models.Document.call(this, values, options);
 
             if ($.isArray(this.goals)) {
@@ -26,28 +34,45 @@
 
         shortStartDate: {
             get: function () {
-                return serenity.format("{0:MM/dd/yyyy}", new Date(this.startDate));
+                return serenity.format("{0:MM/dd/yyyy}", this.startDate);
             }
         },
 
         shortEndDate: {
             get: function () {
-                return serenity.format("{0:MM/dd/yyyy}", new Date(this.endDate));
+                return serenity.format("{0:MM/dd/yyyy}", this.endDate);
             }
         },
 
         year: {
             get: function () {
-                return serenity.format("{0:yyyy}", new Date(this.startDate));
+                return serenity.format("{0:yyyy}", this.startDate);
             }
         },
 
         isCurrent: function (currentDate) {
 
-            var sd = new Date(this.startDate);
-            var ed = new Date(this.endDate);
+            return currentDate > this.startDate && currentDate < this.endDate;
+        },
+        
+        validate: function () {
+            /// <summary>Validate the information for the period.</summary>
+            
+            var errors = [];
+            
+            if (this.startDate === null) {
+                errors.push("Start Date is required.");
+            }
 
-            return currentDate > sd && currentDate < ed;
+            if (this.endDate === null) {
+                errors.push("End Date is required.");
+            }
+
+            if (this.status.length === 0) {
+                errors.push("Status is required.");
+            }
+            
+            return errors;
         }
     });
 }(window.Performance, window.jQuery, window.serenity));

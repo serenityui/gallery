@@ -23,7 +23,22 @@
 
             // Default to the list of periods.
             this.add("/", function () {
-                Performance.App.controller("Period").list(null);
+                $("#navbar li").removeClass("active");
+                $("#navbar li.app-periods").addClass("active");
+                
+                Performance.App.controller("Period").list();
+            });
+
+            //
+            // Home
+            //
+            
+            // About Page.
+            this.add("/About", function () {
+                $("#navbar li").removeClass("active");
+                $("#navbar li.app-about").addClass("active");
+                
+                Performance.App.controller("Home").about();
             });
 
             //

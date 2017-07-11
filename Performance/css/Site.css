@@ -6,6 +6,7 @@
 body {
     margin: 50px 0px 0px 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 /* Set the font for the input and textarea elements to the same as the rest of the elements. */

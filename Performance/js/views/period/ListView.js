@@ -1,11 +1,11 @@
 "use strict";
 
-(function(Performance, $, serenity) {
+(function(Performance, $, serenity, Handlebars) {
     Performance.Views.Period.List = Performance.Views.Base.extend({
 
         __data: null,
 
-        events: ["select"],
+        events: ["select", "add"],
 
         __templates: {
             tile: Handlebars.compile("<div data-id='{{id}}'></div>")
@@ -16,10 +16,17 @@
             var id = args.sender.element.attr("data-id");
             this.trigger("select", { id: id });
         },
+        
+        _onAddPeriodClick: function () {
+            
+            this.trigger("add");
+        },
 
         render: function () {
 
             this._widgets.periods = this.element.find("#periods");
+            
+            this.element.find(".app-add-period").on("click", $.proxy(this._onAddPeriodClick, this));
         },
 
         load: function (data) {
@@ -39,4 +46,4 @@
                 });
         }
     });
-}(window.Performance, window.jQuery, window.serenity));
+}(window.Performance, window.jQuery, window.serenity, window.Handlebars));
