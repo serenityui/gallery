@@ -1,7 +1,7 @@
 Calendar.Stores.Event = function ($, serenity) {
 
     var _urls = {
-        events: serenity.format("{0}data/Events.json?_=", Calendar.root, (new Date()).getTime())
+        events: serenity.format("data/Events.json?_={0}", (new Date()).getTime())
     };
     
     var _events = {

@@ -1,8 +1,8 @@
 Calendar.Stores.Calendar = function ($, serenity) {
 
     var _urls = {
-        calendarTypes: serenity.format("{0}data/CalendarTypes.json?_={1}", Calendar.root, (new Date()).getTime()),
-        calendars: serenity.format("{0}data/Calendars.json?_={1}", Calendar.root, (new Date()).getTime())
+        calendarTypes: serenity.format("data/CalendarTypes.json?_={0}", (new Date()).getTime()),
+        calendars: serenity.format("data/Calendars.json?_={0}", (new Date()).getTime())
     };
     
     var _calendarTypes = [];
