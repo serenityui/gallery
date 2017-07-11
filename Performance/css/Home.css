@@ -1,0 +1,17 @@
+/*
+ * Styles that apply to all pages displayed from the Home Controller.
+ */
+
+#view[data-controller='Home'][data-view='About'] {
+    padding: 10px;
+}
+
+#view[data-controller='Home'][data-view='About'] h3 {
+    font-weight: bold;
+}
+
+#view[data-controller='Home'][data-view='About'] p,
+#view[data-controller='Home'][data-view='About'] a,
+#view[data-controller='Home'][data-view='About'] li {
+    font-size: 18px;
+}
