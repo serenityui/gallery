@@ -7,12 +7,10 @@
 /*
  * Goal Layout Page.
  */
+
+/* Position the icon to show/hide achievements on the right side of the Layout header */
 #view[data-controller='Goal'][data-view='Layout'] .app-show-achievements {
     float: right;
-}
-
-#view[data-controller='Goal'][data-view='Layout'] .app-show-achievements.app-selected {
-    color: black;
 }
 
 
@@ -21,6 +19,7 @@
  * Goal Edit Page.
  */
 
+/* Fill the page with the contents of the edit page */
 #page[data-controller='Goal'][data-view='Edit'] div.app-page-contents {
     position:absolute;
     top: 0px;
@@ -32,15 +31,18 @@
     overflow-y: auto;
 }
 
+/* Move the edit page contents over to give the achievements panel room when it is displayed */
 #page[data-controller='Goal'][data-view='Edit'].app-show-achievements div.app-page-contents {
     right: 550px !important;
     padding-right: 10px;
 }
 
+/* Set the width of the goalTitle element to 100% */
 #page[data-controller='Goal'][data-view='Edit'] #goalTitle {
     width: 100%;
 }
 
+/* Set the width of all textarea elements to 100% */
 #page[data-controller='Goal'][data-view='Edit'] textarea {
     width: 100%;
     height: auto;
@@ -111,6 +113,7 @@
     top: 40px;
     bottom: 40px;
     overflow-y: auto;
+    width: 100%;
 }
 
 /* The copy to clipboard icon is positioned in the center of the achievements footer */

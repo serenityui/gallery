@@ -5,6 +5,13 @@
         /// <summary>The edit view displays period details for edit.</summary>
 
         __data: null,
+        
+        events: [
+            /// <summary>Events that can be triggered in the edit view.</summary>
+
+            // Save the period.
+            "save"
+        ],
 
         _onSaveClick: function () {
             /// <summary>Event handler that is triggered when the save image is clicked.</summary>
@@ -69,6 +76,14 @@
             this._widgets.endDate.datepicker("setDate", data.period.shortEndDate);
             this._widgets.status.dataSource().data(data.statusList);
             this._widgets.status.text(data.period.status);
+        },
+        
+        saveComplete: function (response) {
+            /// <summary>Display a notification to the user that the save is complete.</summary>
+            
+            if (response.result === "success") {
+                this.showNotification({ message: "Period successfully saved" });
+            }
         }
     });
 }(window.Performance, window.jQuery, window.serenity));

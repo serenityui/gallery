@@ -36,6 +36,7 @@
             this.__data = data;
 
             Enumerable.From(data.periods)
+                .Where("period => period.id !== '0'")
                 .ForEach(function (period) {
                     that._widgets.periods.append(that.__templates.tile(period));
                     that._widgets.periods.find(serenity.format("div[data-id='{0}']", period.id)).serenityTile({

@@ -32,3 +32,14 @@
 #page[data-controller='Period'][data-view='Edit'] div.app-edit-footer {
     text-align: center;
 }
+
+
+
+/*
+ * Period Goals Page
+ */
+
+/* The add icon is positioned in the center of the goals page footer */
+#page[data-controller='Period'][data-view='Goals'] div.app-footer {
+    text-align: center;
+}

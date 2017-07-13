@@ -30,7 +30,7 @@
 
                             // Navigate to the period goals page.
                             Performance.App.navigate(serenity.format("/Period/{0}/Goals", args.goal.period.id));
-                            },
+                        },
                         edit: function () {
                             /// <summary>Handle the edit event.</summary>
 
@@ -68,32 +68,40 @@
             var that = this;
             
             // Get the goal and rating lookup values.
-            $.when(Performance.Stores.Period.goal(args.id), Performance.Stores.Lookup.rating()).done(function (goal, ratings) {
-                // Load the layout view.
-                that._layout({ goal: goal }).then(function (layoutView) {
-                    // Select the "edit" icon in the layout view.
-                    layoutView.select(Performance.GoalDetail.EDIT);
-                    // Get the element where the HTML for the edit view will be displayed.
-                    var $el = $("#page");
-                    // Load the HTML for the edit page into the "#page" element of the layout view.
-                    that._load("Edit", $el).then(function () {
-                        // Instantiate the edit view.
-                        that.__currentView = new Performance.Views.Goal.Edit({
-                            save: function (args) {
-                                // Save the goal.
-                                Performance.Stores.Period.saveGoal(args.goal).then(function (response) {
-                                    that.__currentView.saveComplete(response);
-                                    // Reload the page.
-                                    Performance.App.navigate(serenity.format("/Goal/{0}", args.goal.id));
-                                });
-                            }
-                        }, $el);
-                        // Render the edit view.
-                        that.__currentView.render();
-                        // Load the data into the edit view.
-                        that.__currentView.load({ goal: goal, ratings: ratings });
+            $.when(Performance.Stores.Period.goal(args.id), 
+                   Performance.Stores.Lookup.rating(),
+                   Performance.Stores.Lookup.goalStatus()).done(function (goal, ratings, statusList) {
+                // Was the goal found?
+                if (typeof goal !== "undefined") {
+                    // Load the layout view.
+                    that._layout({ goal: goal }).then(function (layoutView) {
+                        // Select the "edit" icon in the layout view.
+                        layoutView.select(Performance.GoalDetail.EDIT);
+                        // Get the element where the HTML for the edit view will be displayed.
+                        var $el = $("#page");
+                        // Load the HTML for the edit page into the "#page" element of the layout view.
+                        that._load("Edit", $el).then(function () {
+                            // Instantiate the edit view.
+                            that.__currentView = new Performance.Views.Goal.Edit({
+                                save: function (args) {
+                                    // Save the goal.
+                                    Performance.Stores.Period.saveGoal(args.goal).then(function (response) {
+                                        that.__currentView.saveComplete(response);
+                                        // Reload the page.
+                                        Performance.App.navigate(serenity.format("/Goal/{0}", args.goal.id));
+                                    });
+                                }
+                            }, $el);
+                            // Render the edit view.
+                            that.__currentView.render();
+                            // Load the data into the edit view.
+                            that.__currentView.load({ goal: goal, ratings: ratings, statusList: statusList });
+                        });
                     });
-                });
+                } else {
+                    // Navigate to the home page.
+                    Performance.App.navigate("/");
+                }
             });
         },
         
@@ -117,11 +125,13 @@
                         // Instantiate the edit view.
                         that.__currentView = new Performance.Views.Goal.Achievements({
                             edit: function (args) {
+                                // Edit an existing achievement.
                                 Performance.App.navigate(serenity.format("/Achievement/{0}", args.id));
                             },
                             add: function (args) {
-                                
+                                // Add a new achievement to the goal.
                                 goal.addAchievement();
+                                // Edit the new achievement.
                                 Performance.App.navigate("/Achievement/0");
                             }
                         }, $el);

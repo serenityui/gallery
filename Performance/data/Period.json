@@ -2,7 +2,6 @@
 	{
 		"_id": "7dc2468e-d1ea-43d8-b316-87d3bf4a1faa",
 		"type": "Period",
-		"employee_id": "4bfce846-8550-43b2-b387-27691d2199ff",
 		"startDate": "2017-01-01T00:00",
 		"endDate": "2017-12-31T00:00",
 		"status": "In Progress",
@@ -64,7 +63,6 @@
 	{
 		"_id": "835ec0ed-2401-45e5-95ee-443dbe7224ef",
 		"type": "Period",
-		"employee_id": "4bfce846-8550-43b2-b387-27691d2199ff",
 		"startDate": "2016-01-01T00:00",
 		"endDate": "2016-12-31T00:00",
 		"status": "Completed",

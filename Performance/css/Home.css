@@ -2,14 +2,23 @@
  * Styles that apply to all pages displayed from the Home Controller.
  */
 
+
+
+/*
+ * About Page.
+ */
+
+/* The about page has padding around it */
 #view[data-controller='Home'][data-view='About'] {
     padding: 10px;
 }
 
+/* Set the font-weight for all h3 elements */
 #view[data-controller='Home'][data-view='About'] h3 {
     font-weight: bold;
 }
 
+/* Set the font-size for all p, a, and li elements */
 #view[data-controller='Home'][data-view='About'] p,
 #view[data-controller='Home'][data-view='About'] a,
 #view[data-controller='Home'][data-view='About'] li {

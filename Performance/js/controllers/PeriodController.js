@@ -25,6 +25,13 @@
 
                             // Navigate to the period edit page.
                             Performance.App.navigate(serenity.format("/Period/{0}", args.id));
+                        },
+                        add: function () {
+                            /// <summary>Handle the add period event.</summary>
+
+                            Performance.Stores.Period.add().then(function () {
+                                Performance.App.navigate("/Period/0");
+                            });
                         }
                     });
                     // Render the list view.
@@ -95,7 +102,16 @@
                     // Get the current performance period.
                     $.when(Performance.Stores.Period.get(id), Performance.Stores.Lookup.periodStatus()).then(function (period, statusList) {
                         // Instantiate the edit view.
-                        var view = new Performance.Views.Period.Edit({}, $el);
+                        var view = new Performance.Views.Period.Edit({
+                            save: function (args) {
+                                // Save the period.
+                                Performance.Stores.Period.savePeriod(args.period).then(function (response) {
+                                    view.saveComplete(response);
+                                    // Reload the page.
+                                    Performance.App.navigate(serenity.format("/Period/{0}", args.period.id));
+                                });
+                            }
+                        }, $el);
                         // Render the edit view.
                         view.render();
                         // Load the data into the edit view.
@@ -124,7 +140,14 @@
                         // Instantiate the goals view.
                         var view = new Performance.Views.Period.Goals({
                             edit: function (args) {
+                                // Edit an existing goal.
                                 Performance.App.navigate(serenity.format("/Goal/{0}", args.id));
+                            },
+                            add: function (args) {
+                                // Add a new goal to the period.
+                                period.addGoal();
+                                // Edit the new goal.
+                                Performance.App.navigate("/Goal/0");
                             }
                         }, $el);
                         // Render the goals view.

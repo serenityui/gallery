@@ -7,6 +7,7 @@
     cursor: pointer;
 }
 
+/* Change the color of the title text on hover. */
 .sr-tile:hover div {
     color: blue;
 }

@@ -19,7 +19,7 @@
         ],
         
         _onAchievementClick: function (event) {
-            /// <summary>
+            /// <summary>Highlight the selected achievement.</summary>
             
             this._widgets.achievementsList.find(".app-achievement").removeClass("app-selected");
             $(event.currentTarget).addClass("app-selected");
@@ -85,6 +85,11 @@
             this._widgets.dueDate = this.element.find("#dueDate");
             this._widgets.dueDate.datepicker();
             this._widgets.selfEvaluation = this.element.find("#selfEvaluation");
+            this._widgets.status = this.element.find("#status").serenityDropdownlist({
+                valueField: "title",
+                textField: "title",
+                width: 250
+            }).data("serenityDropdownlist");
             this._widgets.rating = this.element.find("#rating").serenityDropdownlist({
                 valueField: "title",
                 textField: "title",
@@ -108,6 +113,8 @@
             this._widgets.measurement.val(data.goal.measurement);
             this._widgets.dueDate.datepicker("setDate", data.goal.shortDueDate);
             this._widgets.selfEvaluation.val(data.goal.employeeComments);
+            this._widgets.status.dataSource().data(data.statusList);
+            this._widgets.status.text(data.goal.status);
             this._widgets.rating.dataSource().data(data.ratings);
             this._widgets.rating.text(data.goal.rating);
             this._widgets.assessment.val(data.goal.supervisorComments);
@@ -130,6 +137,8 @@
                             .ForEach(function (achievement) {
                                 that._widgets.achievementsList.append(that.__templates.tile(achievement));
                             });
+                        // Subscribe to the click event to select an achievement.
+                        this._widgets.achievementsList.find(".app-achievement").on("click", $.proxy(this._onAchievementClick, this));
                         // Subscribe to the click event for the copy image.
                         this._widgets.achievementsFooter.find(".app-copy").on("click", $.proxy(this._onCopyToClipboard, this));
                     } else {

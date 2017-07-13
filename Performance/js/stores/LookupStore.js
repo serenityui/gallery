@@ -10,12 +10,14 @@
             rating: "data/Rating.json"
         };
         
-        function _getLookupValues(uri) {
+        function _getLookupValues(name, uri) {
+            /// <summary>Get the lookup values for the name and uri.</summary>
             
             return $.Deferred(function (deferred) {
 
-                base.getJson(uri).then(function (data) {
-
+                base.getJson(name, uri).then(function (data) {
+                    // If the JSON data was retrieved for the first time, then instantiate
+                    // each JSON object as a Performance.Models.Lookup model.
                     if (data.model === null) {
                         data.model = Enumerable.From(data.json)
                             .Select(function (json) {
@@ -32,20 +34,21 @@
         function periodStatus() {
             /// <summary>Get the list of period status.</summary>
 
-            return _getLookupValues(_uri.periodStatus);
+            return _getLookupValues("periodStatus", _uri.periodStatus);
         }
 
         function goalStatus() {
             /// <summary>Get the list of goal status.</summary>
 
-            return _getLookupValues(_uri.goalStatus);
+            return _getLookupValues("goalStatus", _uri.goalStatus);
         }
 
         function rating() {
             /// <summary>Get the list of ratings.</summary>
 
             return $.Deferred(function (deferred) {
-                _getLookupValues(_uri.rating).then(function (ratings) {
+                _getLookupValues("ratings", _uri.rating).then(function (ratings) {
+                    // If an empty rating has not been defined, then add an empty rating.
                     var emptyRating = Enumerable.From(ratings)
                         .Where("rating => rating.id === '0'")
                         .FirstOrDefault();

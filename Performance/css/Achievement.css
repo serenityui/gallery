@@ -2,6 +2,7 @@
  * Styles that apply to all pages displayed from the Achievement Controller.
  */
 
+/* Set the width of the achievementDescription element to 100% */
 #page[data-controller='Achievement'][data-view='Edit'] #achievementDescription {
     width: 100%;
     height: auto;
