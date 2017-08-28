@@ -1,0 +1,8 @@
+/*
+ * Catalog Layout View
+ */
+
+/* When hovering over a category link, show the pointer cursor */
+#view[data-controller="Catalog"][data-view="Layout"] .app-category-link a:hover {
+  cursor: pointer;
+}

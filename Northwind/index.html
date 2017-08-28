@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northwind</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- Font Awesome (CSS) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Serenity UI (CSS) -->
+  <link rel="stylesheet" href="https://serenityui.com/libs/serenityui/css/themes/base/serenityui.min.css">
+  
+  <!-- jQuery 2.2.4 -->
+  <script src="https://serenityui.com/libs/serenityui/js/jquery.min.js"></script>
+
+  <!-- Bootstrap (JS) -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Serenity UI (JS) -->
+  <script src="https://serenityui.com/libs/serenityui/js/serenityui-libs.min.js"></script>
+  <script src="https://serenityui.com/libs/serenityui/js/serenityui.min.js"></script>
+
+  <!-- Northwind (CSS) -->
+  <link rel="stylesheet" href="css/Site.css">
+  <link rel="stylesheet" href="css/Sales.css">
+  <link rel="stylesheet" href="css/Catalog.css">
+</head>
+
+<body>
+  <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand app-navigation-title" href="#/">Northwind</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="app-sales"><a href="#/">Sales</a></li>
+          <li class="app-catalog"><a href="#/Catalog">Catalog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="view" role="main" class="container-fluid">
+
+  </div>
+  
+  <div id="notification" style="display:none;">
+    <div data-template="selectSeriesPoint">
+      <div  style="font-weight:bold;font-size:1.2em;padding:5px;">
+        Click on a series point in the Sales chart to see the orders.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Northwind (JS) -->
+  <script src="js/App.js"></script>
+  <script src="js/Router.js"></script>
+
+  <script src="js/models/CategoryModel.js"></script>
+  <script src="js/models/EmployeeModel.js"></script>
+  <script src="js/models/EmployeeTerritoryModel.js"></script>
+  <script src="js/models/OrderModel.js"></script>
+  <script src="js/models/OrderDetailModel.js"></script>
+  <script src="js/models/ProductModel.js"></script>
+  <script src="js/models/ProductSaleModel.js"></script>
+  <script src="js/models/ShipperModel.js"></script>
+  <script src="js/models/SupplierModel.js"></script>
+
+  <script src="js/controllers/BaseController.js"></script>
+  <script src="js/controllers/CatalogController.js"></script>
+  <script src="js/controllers/SalesController.js"></script>
+
+  <script src="js/views/BaseView.js"></script>
+  <script src="js/views/catalog/LayoutView.js"></script>
+  <script src="js/views/catalog/CategoryView.js"></script>
+  <script src="js/views/sales/LayoutView.js"></script>
+  <script src="js/views/sales/AnnualView.js"></script>
+  <script src="js/views/sales/RepresentativeView.js"></script>
+  <script src="js/views/sales/OrderDetailsDialog.js"></script>
+
+  <script src="js/stores/BaseStore.js"></script>
+  <script src="js/stores/EmployeeStore.js"></script>
+  <script src="js/stores/OrderStore.js"></script>
+  <script src="js/stores/ProductStore.js"></script>
+</body>
+
+</html>

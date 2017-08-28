@@ -1,0 +1,54 @@
+/*
+ * Sales Layout View
+ */
+
+/* Make the panel titles bold */
+#view[data-controller="Sales"][data-view="Layout"] .sidebar .panel-title {
+    font-weight: bold;
+}
+
+/* When hovering over a sales link, show the pointer cursor */
+#view[data-controller="Sales"][data-view="Layout"] .app-sales-link a:hover {
+  cursor: pointer;
+}
+
+
+/*
+ * Annual Sales View
+ */
+
+/* Position the annual sales chart at the top of the view */
+#view div[data-controller='Sales'][data-view="Annual"] #chart {
+    position:absolute;
+    left: 10px;
+    right: 10px;
+    height: 200px;
+}
+
+/* Position the annual sales table below the chart */
+#view div[data-controller='Sales'][data-view="Annual"] #table {
+    position:absolute;
+    top: 320px;
+    left: 10px;
+    right: 10px;
+}
+
+/*
+ * Representative Sales View
+ */
+
+/* Position the representative sales chart to fill the width of the view */
+#view div[data-controller='Sales'][data-view="Representative"] #chart {
+    width: 100%;
+    height: 200px;
+}
+
+.app-loading-rep {
+  font-size: 24px !important;
+  color: blue !important;
+}
+
+.app-order-details:hover {
+  cursor: pointer;
+  color: blue;
+}
