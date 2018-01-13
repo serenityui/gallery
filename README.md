@@ -3,8 +3,9 @@
 
 The templates provided in this repository are:
 
-- Calendar: A sample application modeled after Google Caendar.
-- Performance: A sample application for tracking goals for a performance period and achievements for each goal.
-- Northwind: coming soon!
+- Calendar: An interactive calendar application modeled after Google Calendar. [demo](http://serenityui.com/templates/calendar/index.html)
+- Northwind: A sales dashboard based on the Northwind database. [demo](http://serenityui.com/templates/northwind/index.html)
+- Performance: An application for tracking achievements to accomplish goals for a performance year. [demo](http://serenityui.com/templates/performance/index.html)
+- Workout: An application for tracking workouts. [demo](http://serenityui.com/templates/workout/index.html)
 
 Check out the [Serenity UI Roadmap](http://serenityui.com/Support/Roadmap) to see what new sample applications will be coming soon to the Template Gallery.

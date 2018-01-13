@@ -214,19 +214,16 @@
                         filter: [{ field: "show", operator: "eq", value: true }]
                     });
                     
+                    that._widgets.scheduler.setCalendarDataSource(that._sources.calendars);
+                    
                     Calendar.Stores.Event.getEvents().then(function (events) {
                         that._sources.events = new serenity.DataSource({
                             data: events,
                             change: $.proxy(that._onEventChange, that)
                         });
 
-                        that._widgets.scheduler._setOptions({
-                            dataSource: that._sources.events,
-                            calendars: {
-                                dataSource: that._sources.calendars
-                            }
-                        });
-
+                        that._widgets.scheduler.setDataSource(that._sources.events);
+                        
                         that._loadCalendars.call(that);
 
                         that._resize();
