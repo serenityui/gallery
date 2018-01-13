@@ -1,0 +1,87 @@
+body {
+    margin: 50px 0px 0px 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+/* Hide an element */
+.app-hide {
+    display: none;
+}
+
+/*
+ * Navigation Bar
+ */
+
+/* Show/hide source code, anchor element */
+.app-show-sourcecode a {
+  padding: 10px 15px !important;
+}
+
+/* Hover over show/hide source code, anchor element */
+.app-show-sourcecode a:hover {
+  cursor: pointer;
+}
+
+/*
+ * Main content
+ */
+
+/* view element */
+#view,
+#sourcecode {
+  overflow-y: auto;
+  position: absolute;
+  top: 51px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+#sourcecode {
+  padding: 10px;
+  display:none;
+}
+
+.app-split-screen {
+  width: 50%;  
+}
+
+#view.app-split-screen {
+  right: auto;
+}
+
+
+#sourcecode.app-split-screen {
+  left: auto;
+  display: block;
+}
+
+.app-footer {
+  position: absolute;
+  bottom: 0px;
+  right:0px;
+  left: 0px;
+  height: 45px;
+  background: lightgray;
+  text-align: center;
+  padding: 7px;
+}
+
+.app-footer .fa:hover {
+  color:blue;
+  cursor:pointer;
+}
+
+/*
+ * Source Code description
+ */
+
+#sourcecode h4 {
+  color: teal;
+}
+
+#sourcecode a[target='_blank'] {
+  color: steelblue;
+  font-style:italic;
+}

@@ -1,0 +1,273 @@
+[{
+	"id": 1506916800000,
+	"date": "10-02-2017",
+	"excercises": [{
+		"id": "4cb541dc-ac58-4697-b840-bc793e67717b",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 40,
+		"calories": 423,
+		"stroke": "Freestyle, Moderate",
+		"distance": 1600,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1507003200000,
+	"date": "10-03-2017",
+	"excercises": [{
+		"id": "7b4f2cd8-9893-469c-8d61-e63d8eae7922",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 40,
+		"calories": 363,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1507780800000,
+	"date": "10-12-2017",
+	"excercises": [{
+		"id": "ce5dddef-d1f0-4ee9-bea2-37dcf143cd9e",
+		"type": "Treadmill",
+		"title": "Treadmill",
+		"distance": 2.23,
+		"measurement": "miles",
+		"minutes": 32,
+		"calories": 271
+	}]
+}, {
+	"id": 1509422400000,
+	"date": "10-31-2017",
+	"excercises": [{
+		"id": "b5a63148-e3aa-4ff8-9d07-430c26af6f78",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 20,
+		"calories": 181,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 600,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1509944400000,
+	"date": "11-06-2017",
+	"excercises": [{
+		"id": "9ab2e500-ec28-4be4-94fc-deda2178a4ab",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 20,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 800,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1510117200000,
+	"date": "11-08-2017",
+	"excercises": [{
+		"id": "5f13b517-4e65-4356-9e11-e20312cf55db",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 30,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1510203600000,
+	"date": "11-09-2017",
+	"excercises": [{
+		"id": "ca56a3e2-8ff8-4749-bf66-fe8930b2f11a",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 30,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1510549200000,
+	"date": "11-13-2017",
+	"excercises": [{
+		"id": "1db62d84-f02c-4094-bca9-ccc62a541705",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 40,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1511845200000,
+	"date": "11-28-2017",
+	"excercises": [{
+		"id": "bf67312c-938d-4b15-adc8-8bbed5210b6f",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 26,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1000,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1511931600000,
+	"date": "11-29-2017",
+	"excercises": [{
+		"id": "37e65aab-eaca-45cd-b80f-b709fc6e330a",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 32,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1512018000000,
+	"date": "11-30-2017",
+	"excercises": [{
+		"id": "444cdc7b-3a49-4974-96e4-5071eb124ee2",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 36,
+		"calories": 0,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1512450000000,
+	"date": "12-05-2017",
+	"excercises": [{
+		"id": "a4890dc0-95a0-4bc3-aa4e-6bb03d7685e2",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 33,
+		"calories": 299,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1512536400000,
+	"date": "12-06-2017",
+	"excercises": [{
+		"id": "eddcb8fc-df2f-41f8-9e86-520afaef7ef3",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 38,
+		"calories": 345,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1500,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1512622800000,
+	"date": "12-07-2017",
+	"excercises": [{
+		"id": "a9cb8a68-db12-4287-9504-207653eb9274",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 30,
+		"calories": 272,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1512968400000,
+	"date": "12-11-2017",
+	"excercises": [{
+		"id": "31d9ed64-6f06-4d98-b306-48b12efa37c9",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 36,
+		"calories": 327,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513054800000,
+	"date": "12-12-2017",
+	"excercises": [{
+		"id": "6576aaa7-1d43-4e15-b13d-7dc4d616682a",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 34,
+		"calories": 308,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513227600000,
+	"date": "12-14-2017",
+	"excercises": [{
+		"id": "57648aa4-7389-40b4-91db-6cf2dd7fbf70",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 32,
+		"calories": 290,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1400,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513314000000,
+	"date": "12-15-2017",
+	"excercises": [{
+		"id": "271c7f33-eca4-470a-ba59-5a163e5b792c",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 38,
+		"calories": 345,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1600,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513573200000,
+	"date": "12-18-2017",
+	"excercises": [{
+		"id": "1c59c09d-4107-4041-a44d-cdb1386d8317",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 38,
+		"calories": 345,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1700,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513659600000,
+	"date": "12-19-2017",
+	"excercises": [{
+		"id": "7c7be3c6-aa57-437c-944e-ee5e009abfe0",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 38,
+		"calories": 345,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1700,
+		"measurement": "yards"
+	}]
+}, {
+	"id": 1513746000000,
+	"date": "12-20-2017",
+	"excercises": [{
+		"id": "66c69f49-a7db-4c00-b35d-4fddb654ecb6",
+		"type": "Swimming",
+		"title": "Swimming",
+		"minutes": 28,
+		"calories": 254,
+		"stroke": "Freestyle, Leisurely",
+		"distance": 1200,
+		"measurement": "yards"
+	}]
+}]

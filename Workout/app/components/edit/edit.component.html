@@ -1,0 +1,39 @@
+<div class="app-entry-navigation-bar">
+    <i class="fa fa-3x fa-caret-up app-back" aria-hidden="true" data-bind="(click): {{viewEntry}}"></i>
+    <div class="app-current-entry"><span data-bind="text: {{entryDate}}"></span>: <span data-bind="text: {{excercise.title}}"></span></div>
+</div>
+
+<div class="container app-excercise-values" style="max-width:600px;">
+</div>
+<div class="container" style="max-width:600px;">
+  <div class="row app-calories-row">
+    <div class="col-sm-6">
+      Calories:
+    </div>
+    <div data-bind="text: {{excercise.calories}}" class="col-sm-6">
+    </div>
+  </div>
+</div>
+
+<div class="ui-widget-content app-footer">
+    <i class="fa fa-floppy-o fa-2x app-save" aria-hidden="true" title="Save" data-bind="(click): {{save}}"></i>
+</div>
+
+<div id="notification" 
+     style="display:none;height:100px;padding:25px;"
+     data-widget='serenityNotification |
+                  {
+                    "width": 250,
+                    "duration": 5000,
+                    "bottom": 20,
+                    "right": 20,
+                    "cssClass": "ui-state-error"
+                  }'
+     data-bind="show: {{hasErrors}}">
+  <div class="app-notification-content" style="height:100px;padding:25px;">
+    <div style='min-height:50px;padding:10px;color:darkred;' 
+         data-bind="dataSource: {{errors}}"
+         data-template="<div>{{this}}</div>">
+    </div>
+  </div>
+</div>

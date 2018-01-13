@@ -1,0 +1,491 @@
+<p>
+  The edit component displays the excercise values. Depending on the type of excercise determines 
+  what edit component to load. All files to support the edit component are contained in the 
+  /app/component/edit folder. The edit component contains the following files:
+</p>
+
+<div style="display:inline-block;">
+  <ul>
+    <li>edit.module.ts</li>
+    <li>edit.component.ts</li>
+    <li>edit.component.html</li>
+    <li>edit.component.css</li>
+  </ul>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+  <ul>
+    <li>swimming.component.ts</li>
+    <li>swimming.component.html</li>
+    <li>swimming.component.css</li>
+  </ul>
+</div>
+<div style="display:inline-block;vertical-align:top;">
+  <ul>
+    <li>treadmill.component.ts</li>
+    <li>treadmill.component.html</li>
+    <li>treadmill.component.css</li>
+  </ul>
+</div>
+
+<div data-widget='tabs | {}'>
+<ul>
+  <li><a href="#tabs-module">edit.module.ts</a></li>
+  <li><a href="#tabs-viewmodel">edit.component.ts</a></li>
+  <li><a href="#tabs-html">edit.component.html</a></li>
+  <li><a href="#tabs-swimming-viewmodel">swimming.component.ts</a></li>
+  <li><a href="#tabs-swimming-html">swimming.component.html</a></li>
+  <li><a href="#tabs-treadmill-viewmodel">treadmill.component.ts</a></li>
+  <li><a href="#tabs-treadmill-html">treadmill.component.html</a></li>
+</ul>
+
+
+<div id="tabs-module">
+  <p>
+    The edit.module.ts contains the Module that identifies the routes that are used to navigate to the appropriate 
+    excercise component. When the application is initialized, the App module loads the routes for the edit 
+    Module. When the user navigates to the edit swimming route, the EditSwimmingComponent class is instantiated 
+    and when the user navigates to the edit treadmill route, the EditTreadmillComponent class is instantiated.
+<pre>
+class Module {
+  static routes: Array&lt;IRoute> = [
+    { path: "edit/:date/swimming/:id", component: "EditSwimmingComponent" },
+    { path: "edit/:date/treadmill/:id", component: "EditTreadmillComponent" }
+  ];
+}
+</pre>
+  </p>
+</div>
+
+
+<div id="tabs-viewmodel">
+  <p>
+    The edit.component.ts contains the EditComponent class that is the base class for the EditSwimmingComponent 
+    and EditTreadmillComponent and provides common functionality when editing an excercise. The EditComponent class 
+    is derived from the Component class which is derived from the serenity.ViewModel class.
+  </p>
+
+  <h4>@View Class Decorator</h4>
+  <p>
+    The EditComponent class has the @View class decorator that defines attributes used to display the view 
+    for the component.
+<pre>
+@View({
+  componentPath: "edit",
+  template: "edit.component.html",
+  styles: ["edit.component.css"]
+})
+class EditComponent extends Component {
+}
+</pre>
+  </p>
+
+
+  <h4>EditComponent.load function</h4>
+  <p>
+    In the EditComponent.load function, the entry is retrieved from the EntryService. Then the excercise 
+    that has been selected for edit is retrieved from the entry. The excercise change event is bound to 
+    the EditComponent.onExcerciseChange function which then validates the excercise and gets a list of 
+    errors. The EditComponent is then attached to the view with the serenity.ViewModel.attach function.
+<pre>
+EntryService.getEntry(this.entryDate).then((entry: Models.Entry) => {
+  this.entry = entry;
+  this.excercise = entry.getExcercise(params.id);
+  this.excercise.bind("change", this.onExcerciseChange, this);
+  this.attach();
+});
+</pre>
+  </p>
+
+
+  <h4>EditComponent.onExcerciseChange function</h4>
+  <p>
+    When a change occurs to the excercise model, the EntryComponent.onExcerciseChange function validates 
+    the excercise values and returns an Array of errors. The errors are passed into the EntryComponent.errors.data 
+    function to be used by the View to display the validation errors.
+<pre>
+let errorList: Array&lt;string> = this.excercise.validate();
+this.errors.data(errorList);
+</pre>
+  </p>    
+
+
+  <h4>EditComponent.save function</h4>
+  <p>
+    When the "save" icon is clicked in the View, the EditComponent.save function is called. If there are validation 
+    errors, then the change event is triggered on the EditComponent so that the Notification Widget is displayed with 
+    the list of errors. If there are no errors, then the serenity.Model.commit function is called on the excercise to 
+    commit the changes in the Model instance. The EntryService.saveEntry function is called to save changes to a 
+    persistent store.
+<pre>
+if (this.errors.data().length > 0) {
+  this.trigger("change");
+} else {
+  this.excercise.commit();
+  EntryService.saveEntry(this.entry);
+}
+</pre>
+  </p>    
+
+
+  <h4>EditComponent.viewEntry function</h4>
+  <p>
+    When the "back" icon is clicked to return to the entry view, the EditComponent.viewEntry function is called.
+    The values in the excercise Model are updated when the values are changed in the View. Any changes that have 
+    not been saved are reverted back to the state when last saved, or it's original state if a save has not 
+    occurred. This is done by calling the serenity.Model.rollback function of the excercise instance before 
+    navigating back to the entry view.
+<pre>
+this.excercise.rollback();
+this.router.navigate(serenity.format("/entry/{0}", this.entryDate));
+</pre>
+  </p>    
+    
+</div>
+  
+  
+<div id="tabs-html">
+  <h4>Navigation Bar</h4>
+  <p>
+    The edit.component.html contains a navigtion bar with an icon on the left to return to the entry and 
+    the date and title of the excercise in the center.
+  </p>
+<pre>
+&lt;div class="app-entry-navigation-bar">
+  &lt;i class="fa fa-3x fa-caret-up app-back" aria-hidden="true" data-bind="(click): {{viewEntry}}">&lt;/i>
+  &lt;div class="app-current-entry">
+    &lt;span data-bind="text: {{entryDate}}">&lt;/span>: 
+    &lt;span data-bind="text: {{excercise.title}}">&lt;/span>
+  &lt;/div>
+&lt;/div>
+</pre>
+
+  <p>
+    The <code>data-bind</code> attribute is used to bind the click event of the "back" icon to 
+    the <code>viewEntry</code> function defined in the EditComponent class.
+  </p>
+
+  <p>
+    The <code>data-bind</code> attribute is used to bind the span text to the EditComponent.entryDate 
+    and EditComponent.excercise.title properties.
+  </p>
+
+
+  <h4>Excercise (Type Specific) View</h4>
+  <p>
+    The edit.component.html has a div where the html for the swimming or treadmill edit view is rendered.
+  </p>
+<pre>
+&lt;div class="container app-excercise-values" style="max-width:600px;">
+&lt;/div>
+</pre>
+  <p>
+    The CSS Selector for the <code>.app-excercise-values</code> element is passed into the 
+    @View class decorator as the target for rendering the HTML for the EditSwimmingComponent and 
+    EditTreadmillComponent classes.
+  </p>
+
+  
+  <h4>Calories div Element</h4>
+  <p>
+    The value of the excercise calories property is bound to the view with the <code>data-bind</code> attribute. 
+    The text function is set to the <code>{{excercise.calories}}</code>. When the excercise.calories is recalculated 
+    from a change to another value, the updated calories is displayed.
+  </p>
+<pre>
+&ltdiv data-bind="text: {{excercise.calories}}" class="col-sm-6">&lt/div>
+</pre>
+
+    
+  <h4>Footer Bar</h4>
+  <p>
+    The edit.component.html contains a footer bar with an icon in the center to save the changes to the 
+    excercise.
+  </p>
+<pre>
+&lt;div class="ui-widget-content app-footer">
+  &lt;i class="fa fa-floppy-o fa-2x app-save" aria-hidden="true" title="Save" data-bind="(click): {{save}}">&lt;/i>
+&lt;/div>
+</pre>
+  <p>
+    The <code>data-bind</code> attribute is used to bind the click event of the "save" icon to 
+    the <code>save</code> function defined in the EditComponent class.
+  </p>
+
+  
+  <h4>Notification Widget</h4>
+  <p>
+  The edit.component.html contains a notification that displays errors when attempting to save.
+  </p>
+<pre>
+&lt;div id="notification" 
+     style="display:none;height:100px;padding:25px;"
+     data-widget='serenityNotification |
+                  {
+                    "width": 250,
+                    "duration": 5000,
+                    "bottom": 20,
+                    "right": 20,
+                    "cssClass": "ui-state-error"
+                  }'
+     data-bind="show: {{hasErrors}}">
+  &lt;div class="app-notification-content" style="height:100px;padding:25px;">
+    &lt;div style='min-height:50px;padding:10px;color:darkred;' 
+         data-bind="dataSource: {{errors}}"
+         data-template="&lt;div>{{this}}&lt;/div>">
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+</pre>
+  <p>
+    The value for the <code>data-widget</code> attribute identifies the widget as a Notification widget, a pipe, and then a JSON object 
+    that contains the options for the Notification. The value for the <code>data-bind</code> attribute binds the Notification.show 
+    function so that when there is a change in the ViewModel, the Notification.show function is called and the value 
+    returned from the EditComponent.hasErrors function is passed in as a parameter.
+  </p>
+  <p>
+    The <code>app-notification-content</code> contains a div that has the <code>data-bind</code> attribute that binds a 
+    dataSource to the EditComponent.errors property. The EditComponent.errors is an instance of a serenity.DataSource that 
+    contains the validation errors for the excercise. The <code>data-template</code> provides a template for each error when 
+    rendered as child elements of the div. Since each error is a string (and not a JSON object), <code>{{this}}</code> is 
+    used to render the error string.
+  </p>
+</div>
+  
+  
+<div id="tabs-swimming-viewmodel">
+  <p>
+    The swimming.component.ts contains the EditSwimmingComponent class that is derived from the EditComponent class.
+    Since the EditComponent class takes care of loading the Excercise and attaching it to the view, the EditSwimmingComponent 
+    only has to implement functionality specific to the swimming excercise.
+  </p>
+
+
+  <h4>@View Class Decorator</h4>
+  <p>
+    Similar to the Angular @Component class decorator, the Workout application has a @View class decorator.
+    The EditSwimmingComponent class has the @View class decorator that defines attributes used to display 
+    the view for the component. Since the EditSwimmingComponent is derived from the EditComponent and the 
+    EditComponent also has a @View class decorator, then EditComponent @View class decorator is also used 
+    to display the view and is executed before the EditSwimmingComponent @View class decorator.
+  </p>
+<pre>
+@View({
+  componentPath: "edit",
+  template: "swimming.component.html",
+  target: ".app-excercise-values"
+})
+class EditSwimmingComponent extends EditComponent {
+}
+</pre>
+  <p>
+    The <code>target</code> attribute identifies the CSS Selector used to find the element where the 
+    contents of the swimming.component.html will be inserted. The <code>.app-excercise-values</code> 
+    is the element in the edit.component.html to insert the HTML from the swimming.component.html.
+  </p>
+    
+    
+  <h4>EditSwimmingComponent.render function</h4>
+  <p>
+    In the EditSwimmingComponent.render function, the strokes and measurements properties are 
+    initialized as serenity.DataSource instances. The strokes and measurements properties are 
+    bound to the serenity.Dropdownlist widgets in the swimming view.
+  </p>
+<pre>
+this.strokes = new serenity.DataSource({
+  data: [
+    {stroke: "Freestyle, Leisurely"},
+    {stroke: "Freestyle, Moderate"},
+    {stroke: "Freestyle, Fast"},
+    {stroke: "Backstroke"},
+    {stroke: "Breaststroke"},
+    {stroke: "Butterfly"}
+  ]
+});
+
+this.measurements = new serenity.DataSource({
+  data: [
+    {measurement: "meters"},
+    {measurement: "yards"}
+  ]
+});
+</pre>
+</div>
+  
+  
+<div id="tabs-swimming-html">
+  <h4>Stroke Dropdownlist Widget</h4>
+  <p>
+    The swimming.component.html contains a serenity.Dropdownlist that displays a list of strokes and the stroke 
+    selected for the instance of the swimming excercise.
+  </p>
+<pre>
+&lt;select data-widget="serenityDropdownlist | 
+                     {
+                      'dataSource': {{strokes}},
+                      'textField': 'stroke', 
+                      'valueField': 'stroke' 
+                     }" 
+        data-bind="value: {{excercise.stroke}}">
+&lt;/select>
+</pre>
+
+  <p>
+    The value for the <code>data-widget</code> attribute identifies the widget as a Dropdownlist widget, a pipe, and then a JSON object 
+    that contains the options for the Dropdownlist. 
+  </p>
+
+  <p>
+    The <code>{{strokes}}</code> binds the Dropdownlist to the EditSwimmingComponent.strokes property; a serenity.DataSource 
+    with the list of strokes.
+  </p>
+
+  <p>
+    The value for the <code>data-bind</code> attribute binds the Dropdownlist.value function to the EditSwimmingComponent 
+    <code>{{excercise.stroke}}</code> property.
+  </p>
+
+
+  <h4>Measurement Dropdownlist Widget</h4>
+  <p>
+    The swimming.component.html contains a serenity.Dropdownlist that displays a list of measurements and the measurement 
+    selected for the instance of the Swimming excercise.
+  </p>
+<pre>
+&lt;select data-widget="serenityDropdownlist | 
+                     {
+                      'dataSource': {{measurements}},
+                      'textField': 'measurement', 
+                      'valueField': 'measurement' 
+                     }" 
+        data-bind="value: {{excercise.measurement}}">
+&lt;/select>
+</pre>
+
+  <p>
+    The value for the <code>data-widget</code> attribute identifies the widget as a Dropdownlist widget, a pipe, and then a JSON object 
+    that contains the options for the Dropdownlist. 
+  </p>
+
+  <p>
+    The <code>{{measurements}}</code> binds the Dropdownlist to the EditSwimmingComponent.measurements property; a serenity.DataSource 
+    with the list of measurements.
+  </p>
+
+  <p>
+    The value for the <code>data-bind</code> attribute binds the Dropdownlist.value function to the EditSwimmingComponent 
+    <code>{{excercise.measurement}}</code> property.
+  </p>
+
+
+  <h4>Distance and Minutes input Elements</h4>
+  <p>
+    The value of the Swimming excercise distance and minutes properties are bound to the view with the <code>data-bind</code> attribute. 
+    The val function is set to the <code>{{excercise.distance | integer}}</code> where the excercise.distance is the property 
+    to bind, then a pipe, and then the data type of the excercise.distance property. When the excercise.distance is set to a value, 
+    the value is converted to an integer.
+  </p>
+<pre>
+&lt;input data-bind="val: {{excercise.distance | integer}}" />
+</pre>
+<pre>
+&lt;input data-bind="val: {{excercise.minutes | integer}}" />
+</pre>
+</div>
+
+
+<div id="tabs-treadmill-viewmodel">
+  <p>
+    The swimming.component.ts contains the EditTreadmillComponent class that is derived from the EditComponent class.
+    Since the EditComponent class takes care of loading the Excercise and attaching it to the view, the EditTreadmillComponent 
+    only has to implement functionality specific to the treadmill excercise.
+  </p>
+
+
+  <h4>@View Class Decorator</h4>
+  <p>
+    Similar to the Angular @Component class decorator, the Workout application has a @View class decorator.
+    The EditTreadmillComponent class has the @View class decorator that defines attributes used to display 
+    the view for the component. Since the EditTreadmillComponent is derived from the EditComponent and the 
+    EditComponent also has a @View class decorator, then EditComponent @View class decorator is also used 
+    to display the view and is executed before the EditTreadmillComponent @View class decorator.
+  </p>
+<pre>
+@View({
+  componentPath: "edit",
+  template: "treadmill.component.html",
+  target: ".app-excercise-values"
+})
+class EditTreadmillComponent extends EditComponent {
+}
+</pre>
+  <p>
+    The <code>target</code> attribute identifies the CSS Selector used to find the element where the 
+    contents of the treadmill.component.html will be inserted. The <code>.app-excercise-values</code> 
+    is the element in the edit.component.html to insert the HTML from the treadmill.component.html.
+  </p>
+
+
+  <h4>EditTreadmillComponent.render function</h4>
+  <p>
+    In the EditTreadmillComponent.render function, the measurements property is 
+    initialized as serenity.DataSource instance. The measurements property is 
+    bound to the serenity.Dropdownlist widget in the treadmill view.
+  </p>
+<pre>
+this.measurements = new serenity.DataSource({
+  data: [
+    {measurement: "kilometers"},
+    {measurement: "miles"}
+  ]
+});
+</pre>
+</div>
+  
+  
+<div id="tabs-treadmill-html">
+  <h4>Measurement Dropdownlist Widget</h4>
+  <p>
+    The treadmill.component.html contains a serenity.Dropdownlist that displays a list of measurements and the measurement 
+    selected for the instance of the Treadmill excercise.
+  </p>
+<pre>
+&lt;select data-widget="serenityDropdownlist | 
+                     {
+                      'dataSource': {{measurements}},
+                      'textField': 'measurement', 
+                      'valueField': 'measurement' 
+                     }" 
+        data-bind="value: {{excercise.measurement}}">
+&lt;/select>
+</pre>
+
+  <p>
+    The value for the <code>data-widget</code> attribute identifies the widget as a Dropdownlist widget, a pipe, and then a JSON object 
+    that contains the options for the Dropdownlist. 
+  </p>
+
+  <p>
+    The <code>{{measurements}}</code> binds the Dropdownlist to the EditTreadmillComponent.measurements property; a serenity.DataSource 
+    with the list of measurements.
+  </p>
+
+  <p>
+    The value for the <code>data-bind</code> attribute binds the Dropdownlist.value function to the EditTreadmillComponent 
+    <code>{{excercise.measurement}}</code> property.
+  </p>
+
+
+  <h4>Distance and Minutes input Elements</h4>
+  <p>
+    The value of the Treadmill excercise distance and minutes properties are bound to the view with the <code>data-bind</code> attribute. 
+    The val function is set to the <code>{{excercise.distance | integer}}</code> where the excercise.distance is the property 
+    to bind, then a pipe, and then the data type of the excercise.distance property. When the excercise.distance is set to a value, 
+    the value is converted to an integer.
+  </p>
+<pre>
+&lt;input data-bind="val: {{excercise.distance | integer}}" />
+</pre>
+<pre>
+&lt;input data-bind="val: {{excercise.minutes | integer}}" />
+</pre>
+</div>

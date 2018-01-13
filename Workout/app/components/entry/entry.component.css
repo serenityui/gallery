@@ -1,0 +1,69 @@
+/*
+ * Journal Component Style Sheet
+ */
+
+/* Date Navigation Bar */
+div.app-date-navigation-bar {
+    width:100%;
+    height:45px;
+    position:relative;
+    background-color:lightgrey;
+}
+
+/* Date Navigation Bar hover over Icon */
+div.app-date-navigation-bar .fa:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Date Navigation Bar Return to list Icon */
+div.app-date-navigation-bar .app-list {
+    position:absolute;
+    left:5px;
+}
+
+/* Date Navigation Bar Previous Date Icon */
+div.app-date-navigation-bar .app-prev-date {
+    position:absolute;
+    right:30px;
+}
+
+/* Date Navigation Bar Next Date Icon */
+div.app-date-navigation-bar .app-next-date {
+    position:absolute;
+    right:5px;
+}
+
+/* Date Navigation Bar Calendar Icon */
+div.app-date-navigation-bar .app-calendar {
+    position:absolute;
+    right:30px;
+    top:5px;
+}
+
+/* Date Navigation Bar Current Date */
+div.app-date-navigation-bar .app-current-date {
+    position:absolute;
+    left:25px;
+    right:50px;
+    top:5px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Navigation Bar Date Picker */
+div.app-date-navigation-bar .app-datepicker {
+    position:absolute;
+    top:45px;
+    right:0px;
+    z-index:1;
+}
+
+
+
+/* Listview widget with excercises */
+div.app-entry-excercises {
+  margin: 10px;
+  border-width: 0px;
+}

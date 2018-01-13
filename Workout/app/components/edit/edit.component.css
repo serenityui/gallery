@@ -1,0 +1,46 @@
+/*
+ * Journal Entry Component Style Sheet
+ */
+
+/* Entry Navigation Bar */
+div.app-entry-navigation-bar {
+    width:100%;
+    height:45px;
+    position:relative;
+    background-color:lightgrey;
+}
+
+/* Date Navigation Bar hover over Icon */
+div.app-entry-navigation-bar .fa:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Date Navigation Bar Previous Date Icon */
+div.app-entry-navigation-bar .app-back {
+    position:absolute;
+    left:5px;
+}
+
+/* Date Navigation Bar Current Date */
+div.app-entry-navigation-bar .app-current-entry {
+    position:absolute;
+    left:25px;
+    right:50px;
+    top:5px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Journal Entry container rows */
+#view div.container div.row {
+  margin-top: 20px;
+}
+
+
+/* Journal Entry container calories row */
+div.row.app-calories-row {
+  font-size: 1.5em;
+  color: darkgreen;
+}

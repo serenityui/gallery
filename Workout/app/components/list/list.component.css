@@ -1,0 +1,21 @@
+/* Hover over entry details icon */
+.app-entry-details:hover {
+  cursor: pointer;
+}
+
+.app-navigation-bar {
+  width:100%;
+  height:45px;
+  position:relative;
+  background-color:lightgrey;
+}
+
+.app-show-datepanel {
+  position:absolute;
+  right:5px;
+  top:10px;
+}
+
+.app-show-datepanel:hover {
+  cursor: pointer;
+}

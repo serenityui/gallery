@@ -1,0 +1,50 @@
+<div class="app-navigation-bar">
+  <i class="fa fa-2x fa-calendar app-show-datepanel" aria-hidden="true"></i>
+</div>
+
+<div id="selectDatePanel" style="position:absolute;top:50px;right:10px;width:240px;height:210px;display:none;">
+  <!-- <div id="adddatepicker"></div> -->
+  <div data-widget='datepicker |
+                    {
+                      "onSelect": {{selectDate}}
+                    }'>
+  </div>
+</div>
+
+<div data-widget='serenityGrid | 
+                  {
+                    "dataSource": {{entries}},
+                    "columns": [
+                      { "title": "Date", "field": "date" },
+                      {
+                        "title": "", 
+                        "templateSelector": "#detailCellTemplate", 
+                        "width": "50px"
+                      }
+                    ],
+                    "mode": "bootstrap",
+                    "height": "600px"
+                  }'>
+</div>
+
+<script type="text/serenity-template" id="detailCellTemplate">
+  <i class="fa fa-chevron-circle-right fa-2x app-entry-details" 
+     aria-hidden="true" 
+     onclick="$(window.document).data('serenityViewModel').entryDetails('{{date}}');" 
+     data-date="{{date}}">
+  </i>
+</script>
+
+<script>
+  $(function () {
+    var _selectDatePanel = $("#selectDatePanel");
+
+    $(".app-show-datepanel").on("click", function () {
+      if (_selectDatePanel.is(":visible")) {
+        _selectDatePanel.hide();
+      } else {
+        _selectDatePanel.show();
+      }
+    });
+  })
+</script>

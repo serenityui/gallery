@@ -1,0 +1,14 @@
+[{
+  "id": "bf01464e-37e2-49ae-b817-b6f453258ca7",
+  "weight": 200,
+  "measurement": "pounds",
+  "selectedExcerciseTypes": [{
+    "id": "4cb541dc-ac58-4697-b840-bc793e67717b",
+    "type": "Swimming",
+    "title": "Swimming"
+  },{
+    "id": "afa7ce77-b6dd-4ae0-845b-732283b798a5",
+    "type": "Treadmill",
+    "title": "Treadmill"
+  }]
+}]

@@ -1,0 +1,163 @@
+<p>
+  The list component displays the list of workout entries. Each workout entry can contain one or more excercises that were done for the day.
+  The list component is developed in TypeScript and implements MVVM using the the Serenity UI ViewModel class.
+</p>
+
+<p>
+  The Workout application structure is modularized into functions as described in 
+  <a href="https://scotch.io/tutorials/angularjs-best-practices-directory-structure" target="_blank">
+    AngularJS Best Practices: Directory Structure <i class="fa fa-external-link" aria-hidden="true"></i>
+  </a>. 
+  All files to support the list component are contained in the /app/component/list folder.
+  The list component contains the following files:
+</p>
+
+<ul>
+  <li>list.module.ts</li>
+  <li>list.component.ts</li>
+  <li>list.component.html</li>
+  <li>list.component.css</li>
+</ul>
+
+<div data-widget='tabs | {}'>
+<ul>
+  <li><a href="#tabs-module">list.module.ts</a></li>
+  <li><a href="#tabs-viewmodel">list.component.ts</a></li>
+  <li><a href="#tabs-html">list.component.html</a></li>
+</ul>
+
+
+<div id="tabs-module">
+  <p>
+    The list.module.ts contains the Module that identifies the route that is used to navigate to the 
+    list component. When the application is initialized, the App module loads the route for the list 
+    Module. When the user navigates to the list route, the ListComponent class is instantiated.
+  </p>
+<pre>
+class Module {
+  static routes: Array&lt;IRoute> = [
+    { path: "list", component: "ListComponent" }
+  ];
+}
+</pre>
+</div>
+  
+  
+<div id="tabs-viewmodel">
+  <p>
+    The list.component.ts contains the ListComponent class that is the ViewModel that exposes the data and methods for 
+    maintaining state and routing requests from the view. The ListComponent class is derived from the Component class 
+    which is derived from the serenity.ViewModel class.
+  </p>
+
+
+  <h4>@View Class Decorator</h4>
+  <p>
+    Similar to the Angular @Component class decorator, the Workout application has a @View class decorator.
+    The ListComponent class has the @View class decorator that defines attributes used to display the view 
+    for the component.
+  </p>
+<pre>
+@View({
+  componentPath: "list",
+  template: "list.component.html",
+  styles: ["list.component.css"]
+})
+class ListComponent extends Component {
+}
+</pre>
+  <p>
+    The <code>componentPath</code> attribute identifies the folder within the app/components folder that 
+    contains the files for the view.
+  </p>
+  <p>
+    The <code>template</code> attribute (similar to Angular's templateUrl attribute) identifies the html 
+    file for the view. 
+  </p>
+  <p>
+    The <code>styles</code> attribute (similar to Angular's styleUrls attribute) identifies the CSS files 
+    for the view.
+  </p>
+
+
+  <h4>ListCompoenent.load function</h4>
+  <p>
+    In the ListCompoenent.load function, the entries are retrieved from the EntryService. The ListCompoent
+    is then attached to the view with the serenity.ViewModel.attach function. Since an element is not passed 
+    into the attach function, the ViewModel is attached to the window.document.
+  </p>
+<pre>
+EntryService.getEntries().then((entries: Array&lt;Models.Entry>) => {
+  this.entries = new serenity.DataSource({
+    data: entries,
+    sort: [{ field: "id", dir: "desc" }],
+    filter: [{ field: "id", operator: "neq", value: 0 }]
+  });
+  this.attach();
+});
+</pre>
+
+
+  <h4>ListCompoenent.entryDetails function</h4>
+  <p>
+    The ListCompoenent.entryDetails function that is called when the details icon is clicked. The 
+    router is called to navigate to the entry view that displays the list of excercises.
+  </p>
+<pre>
+entryDetails(date: string) {
+  this.router.navigate(serenity.format("/entry/{0}", date));
+}
+</pre>
+</div>
+
+
+<div id="tabs-html">
+  <p>The list.component.html contains the view for presenting a list of entries in a grid.</p>
+
+
+  <h4>Grid Widget</h4>
+  <p>
+    The grid that displays the list of entries is defined in the view as:
+  </p>
+<pre>
+&lt;div data-widget='serenityGrid | 
+                  {
+                    "dataSource": {{entries}},
+                    "columns": [
+                      { "title": "Date", "field": "date" },
+                      {
+                        "title": "", 
+                        "templateSelector": "#detailCellTemplate", 
+                        "width": "50px"
+                      }
+                    ],
+                    "mode": "bootstrap",
+                    "height": "600px"
+                  }'>
+&lt;/div>
+</pre>
+  <p>
+    The value for the data-widget attribute identifies the widget as the Grid, a pipe, and then a JSON object 
+    that contains the options for the Grid.
+  </p>
+  <p>
+    The <code>{{entries}}</code> binds the Grid to the ListComponent.entries property; a serenity.DataSource 
+    with the list of Entry model instances.
+  </p>
+
+
+  <h4>Grid column.templateSelector Option</h4>
+  <p>
+    The templateSelector identifies a CSS Selector to get the element that contains the template for the column cell.
+    The element with the id of detailCellTemplate has the following template that displays an icon that, when clicked
+    gets the instance of the ViewModel that has been attached to the window.document element, and calls the 
+    ListComponent.entryDetails function with a date:
+  </p>
+<pre>
+&lt;i class="fa fa-chevron-circle-right fa-2x app-entry-details" 
+   aria-hidden="true" 
+   onclick="$(window.document).data('serenityViewModel').entryDetails('{{date}}');" 
+   data-date="{{date}}">
+&lt;/i>
+</pre>
+</div>

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-6">
+    Distance:
+  </div>
+  <div class="col-sm-6">  
+    <input data-bind="val: {{excercise.distance | integer}}" style="width:196px;"/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    Measurement:
+  </div>
+  <div class="col-sm-6">
+    <select data-widget="serenityDropdownlist | 
+                         {
+                          'dataSource': {{measurements}},
+                          'textField': 'measurement', 
+                          'valueField': 'measurement' 
+                         }" 
+            data-bind="value: {{excercise.measurement}}">
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    Minutes:
+  </div>
+  <div class="col-sm-6">
+    <input data-bind="val: {{excercise.minutes | integer}}" style="width:196px;"/>
+  </div>
+</div>

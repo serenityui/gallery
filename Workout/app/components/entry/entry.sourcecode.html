@@ -1,0 +1,155 @@
+<p>
+  The entry component displays the list of excercises for an entry. Each excercise can be selected to
+  edit the excercise values. All files to support the entry component are contained in the 
+  /app/component/entry folder. The entry component contains the following files:
+</p>
+
+<ul>
+  <li>entry.module.ts</li>
+  <li>entry.component.ts</li>
+  <li>entry.component.html</li>
+  <li>entry.component.css</li>
+</ul>
+
+<div data-widget='tabs | {}'>
+<ul>
+  <li><a href="#tabs-module">entry.module.ts</a></li>
+  <li><a href="#tabs-viewmodel">entry.component.ts</a></li>
+  <li><a href="#tabs-html">entry.component.html</a></li>
+</ul>
+
+
+<div id="tabs-module">
+  <p>
+    The entry.module.ts contains the Module that identifies the route that is used to navigate to the 
+    entry component. When the application is initialized, the App module loads the route for the entry 
+    Module. When the user navigates to the entry route, the EntryComponent class is instantiated.
+  </p>
+<pre>
+class Module {
+  static routes: Array&lt;IRoute> = [
+    { path: "entry/:date", component: "EntryComponent" }
+  ];
+}
+</pre>
+</div>
+  
+  
+<div id="tabs-viewmodel">
+  <p>
+    The entry.component.ts contains the EntryComponent class that is the ViewModel that exposes the data and methods for 
+    maintaining state and routing requests from the view. The EntryComponent class is derived from the Component class 
+    which is derived from the serenity.ViewModel class.
+  </p>
+
+  <h4>@View Class Decorator</h4>
+  <p>
+    The EntryComponent class has the @View class decorator that defines attributes used to display the view 
+    for the component.
+  </p>
+<pre>
+@View({
+  componentPath: "entry",
+  template: "entry.component.html",
+  styles: ["entry.component.css"]
+})
+class EntryComponent extends Component {
+}
+</pre>
+
+
+  <h4>EntryComponent.load function</h4>
+  <p>
+    In the EntryComponent.load function, the entry is retrieved from the EntryService. The EntryComponent
+    is then attached to the view with the serenity.ViewModel.attach function. Since an element is not passed 
+    into the attach function, the ViewModel is attached to the window.document.
+  </p>
+<pre>
+EntryService.getEntry(this.date).then((entry: Models.Entry) => {
+  this.entry = entry;
+  this.attach();
+});
+</pre>
+
+  <h4>EntryComponent.viewExcercise function</h4>
+  <p>
+    When an excercise is selected in the Listview, the EntryComponent.viewExcercise function is called. The 
+    router is called to navigate to the edit view that displays the excercise values.
+  </p>
+<pre>
+viewExcercise(event: JQueryEventObject, ui: any): void {
+
+  let excercise = ui.item;
+  let route = serenity.format("/edit/{0}/{1}/{2}", 
+    this.date,
+    excercise.type.toLowerCase(),
+    excercise.id);
+
+  this.router.navigate(route);
+}
+</pre>
+</div>
+  
+  
+<div id="tabs-html">
+  <h4>Navigation Bar</h4>
+  <p>
+    The entry.component.html contains a navigtion bar with an icon on the left to return to the list of 
+    entries, the date in the center, and 2 icons on the right to navigate to the previous and next days.
+  </p>
+<pre>
+&lt;div class="app-date-navigation-bar">
+    &lt;i class="fa fa-3x fa-caret-up app-list" aria-hidden="true" data-bind="(click): {{viewList}}">&lt;/i>
+    &lt;div class="app-current-date" data-bind="text: {{date}}">&lt;/div>
+    &lt;i class="fa fa-3x fa-caret-left app-prev-date" aria-hidden="true" data-bind="(click): {{previousDay}}">&lt;/i>
+    &lt;i class="fa fa-3x fa-caret-right app-next-date" aria-hidden="true" data-bind="(click): {{nextDay}}">&lt;/i>
+&lt;/div>
+</pre>
+
+  <p>
+    The <code>data-bind</code> attribute is used to bind the click event of the "list", "previous" and "next" icons to 
+    the <code>viewList</code>, <code>previousDay</code> and <code>nextDay</code> functions defined in the EntryComponent 
+    class.
+  </p>
+
+  <p>
+    The <code>data-bind</code> attribute is used to bind the div text to the EntryComponent.date property.
+  </p>
+
+
+  <h4>Listview</h4>
+  <p>
+    The listview that displays the excercises is defined in the view as:
+  </p>
+<pre>
+&lt;div data-widget='serenityListview | 
+                  {
+                    "dataSource": {{entry.excercises}},
+                    "selectable": true,
+                    "mode": "tile",
+                    "tile": {
+                      "templateSelector": "#excerciseTemplate",
+                      "selectedClass": null,
+                      "height": 180,
+                      "width": 180
+                    },
+                    "select": {{viewExcercise}}
+                  }'
+     class="app-entry-excercises">
+&lt;/div>
+</pre>
+  <p>
+    The value for the data-widget attribute identifies the widget as the Listview, a pipe, and then a JSON object 
+    that contains the options for the Listview.
+  </p>
+
+  <p>
+    The <code>{{entry.excercises}}</code> binds the Listview to the EntryComponent.entry.excercises property; an 
+    array of Excercise model instances.
+  </p>
+
+  <p>
+    The select attribute is set to the <code>{{viewExcercise}}</code>, so that when the Listview 
+    <code>select</code> event is raised, the EntryComponent.viewExcercise function is called.
+  </p>
+</div>
